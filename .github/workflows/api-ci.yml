@@ -1,0 +1,48 @@
+name: api-ci
+
+# Verifies the PDF Desk API: build, handler test suite, container image
+# build AND a runtime smoke test. CI for this repository's own software -
+# no deployment, no endpoint is created by this workflow.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-test-container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22.x"
+
+      - name: Install poppler (test dependency)
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+
+      - name: Vet
+        run: go vet ./...
+
+      - name: Build
+        run: go build ./...
+
+      - name: Run handler test suite
+        run: go test ./...
+
+      - name: Build container image (build verification only, never pushed)
+        run: docker build -t pdfdesk-api-ci .
+
+      - name: Container runtime smoke test
+        run: |
+          set -euo pipefail
+          trap 'echo "=== container logs ==="; docker logs api 2>&1 | tail -40 || true' ERR
+          docker run -d --name api -p 8080:8080 pdfdesk-api-ci
+          code=""
+          for i in $(seq 1 30); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/healthz || true)
+            [ "$code" = "200" ] && break
+            sleep 1
+          done
+          [ "$code" = "200" ]
+          docker stop api
