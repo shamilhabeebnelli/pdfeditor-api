@@ -1,4 +1,4 @@
-// api_test.go â end-to-end tests against the real handlers via httptest.
+// api_test.go — end-to-end tests against the real handlers via httptest.
 package main
 
 import (
@@ -150,7 +150,7 @@ func TestReplaceNoMatch(t *testing.T) {
 
 func TestEditNonLatinFailsHonestly(t *testing.T) {
 	pdfBytes := samplePDF(t)
-	ops := `[{"page":1,"kind":"addtext","rect":{"x":72,"y":400,"w":200,"h":40},"text":"à´®à´²à´¯à´¾à´³à´","size":12}]`
+	ops := `[{"page":1,"kind":"addtext","rect":{"x":72,"y":400,"w":200,"h":40},"text":"മലയാളം","size":12}]`
 	rec := upload(t, "/v1/edit", map[string]string{"ops": ops}, pdfBytes)
 	if rec.Code != 422 {
 		t.Fatalf("want 422 for non-Latin, got %d", rec.Code)
