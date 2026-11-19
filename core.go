@@ -1,4 +1,4 @@
-// core.go â shared PDF Desk logic: text-line discovery, font mapping and the
+// core.go — shared PDF Desk logic: text-line discovery, font mapping and the
 // op model. Pure Go; the same semantics as the browser editor
 // (pdfeditor.denelli.in) but with no JavaScript and no browser.
 //
@@ -377,7 +377,7 @@ func matchLines(all [][]Line, query string, page int) []Line {
 // fonts (WinAnsiEncoding, cp1252). Same honest v1 limit as the website:
 // direct edits are Latin-script only; flatten has no such limit.
 func winAnsiOK(s string) (bad rune, ok bool) {
-	const extra = "â¬âÆââ¦â â¡Ëâ°Å â¹ÅÅ½âââââ¢ââËâ¢Å¡âºÅÅ¾Å¸"
+	const extra = "€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ"
 	for _, r := range s {
 		if r < 256 || strings.ContainsRune(extra, r) {
 			continue
