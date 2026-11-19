@@ -16,7 +16,7 @@ Docker (recommended, includes poppler):
     docker build -t pdfdesk-api .
     docker run -p 8080:8080 pdfdesk-api
 
-Or with Go 1.22+ and poppler-utils installed (`apt install poppler-utils` /
+Or with Go 1.26+ and poppler-utils installed (`apt install poppler-utils` /
 `brew install poppler`):
 
     go build -o pdfdesk-api .
