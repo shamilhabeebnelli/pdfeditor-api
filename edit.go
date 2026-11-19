@@ -1,4 +1,4 @@
-// edit.go â cover-and-replace patching: per-page overlay PDFs stamped on top
+// edit.go — cover-and-replace patching: per-page overlay PDFs stamped on top
 // of the original with pdfcpu. The original page content stays in the file
 // underneath the opaque patches (same semantics as the website's normal
 // export); /v1/flatten is the way to make covered content unrecoverable.
@@ -197,11 +197,11 @@ func drawTextLines(p *gofpdf.Fpdf, d pageDims, op Op, text string, firstBaseline
 // byte values for go-fpdf's core fonts.
 func cp1252(s string) string {
 	m := map[rune]byte{
-		'â¬': 0x80, 'â': 0x82, 'Æ': 0x83, 'â': 0x84, 'â¦': 0x85, 'â ': 0x86,
-		'â¡': 0x87, 'Ë': 0x88, 'â°': 0x89, 'Å ': 0x8A, 'â¹': 0x8B, 'Å': 0x8C,
-		'Å½': 0x8E, 'â': 0x91, 'â': 0x92, 'â': 0x93, 'â': 0x94, 'â¢': 0x95,
-		'â': 0x96, 'â': 0x97, 'Ë': 0x98, 'â¢': 0x99, 'Å¡': 0x9A, 'âº': 0x9B,
-		'Å': 0x9C, 'Å¾': 0x9E, 'Å¸': 0x9F,
+		'€': 0x80, '‚': 0x82, 'ƒ': 0x83, '„': 0x84, '…': 0x85, '†': 0x86,
+		'‡': 0x87, 'ˆ': 0x88, '‰': 0x89, 'Š': 0x8A, '‹': 0x8B, 'Œ': 0x8C,
+		'Ž': 0x8E, '‘': 0x91, '’': 0x92, '“': 0x93, '”': 0x94, '•': 0x95,
+		'–': 0x96, '—': 0x97, '˜': 0x98, '™': 0x99, 'š': 0x9A, '›': 0x9B,
+		'œ': 0x9C, 'ž': 0x9E, 'Ÿ': 0x9F,
 	}
 	var b strings.Builder
 	for _, r := range s {
