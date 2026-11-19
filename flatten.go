@@ -1,4 +1,4 @@
-// flatten.go â image-flatten export: every page is re-rendered to a PNG with
+// flatten.go — image-flatten export: every page is re-rendered to a PNG with
 // poppler's pdftoppm and rebuilt into a brand-new PDF. The original page
 // content, annotations, attachments and metadata do not carry over; text
 // becomes part of the page image and is no longer selectable.
