@@ -1,4 +1,4 @@
-// main.go â PDF Desk self-host API: an HTTP wrapper around the same editing
+// main.go — PDF Desk self-host API: an HTTP wrapper around the same editing
 // semantics as https://pdfeditor.denelli.in, for developers to run next to
 // their own bots and apps. No account, no key, no hosted endpoint.
 package main
