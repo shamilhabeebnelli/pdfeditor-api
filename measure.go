@@ -1,4 +1,4 @@
-// measure.go â string-width measuring with go-fpdf's core font metrics.
+// measure.go — string-width measuring with go-fpdf's core font metrics.
 package main
 
 import "github.com/jung-kurt/gofpdf"
