@@ -1,5 +1,5 @@
 # Build stage
-FROM golang:1.22-bookworm AS build
+FROM golang:1.26-trixie AS build
 WORKDIR /src
 COPY go.mod go.sum ./
 RUN go mod download
@@ -8,7 +8,7 @@ RUN CGO_ENABLED=0 go build -o /out/pdfdesk-api .
 
 # Runtime stage: poppler-utils provides pdftotext (text extraction) and
 # pdftoppm (flatten rendering).
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
 RUN apt-get update \
     && apt-get install -y --no-install-recommends poppler-utils ca-certificates \
     && rm -rf /var/lib/apt/lists/*
